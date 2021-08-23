@@ -1,0 +1,22 @@
+{
+  "variants": {
+    "type=south": {
+      "model": "creamiceverticalslab:block/vertical_spruce_slab_south"
+    },
+    "type=east": {
+      "model": "creamiceverticalslab:block/vertical_spruce_slab_south",
+      "y":270
+    },
+    "type=north": {
+      "model": "creamiceverticalslab:block/vertical_spruce_slab_south",
+      "y":180
+    },
+    "type=west": {
+      "model": "creamiceverticalslab:block/vertical_spruce_slab_south",
+      "y":90
+    },
+    "type=full": {
+      "model": "creamiceverticalslab:block/vertical_spruce_slab_double"
+    }
+  }
+}
