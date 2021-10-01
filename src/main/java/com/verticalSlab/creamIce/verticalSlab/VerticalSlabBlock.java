@@ -5,7 +5,6 @@ import com.verticalSlab.creamIce.slabtype.SlabDirectionTypeProperties;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.IWaterLoggable;
-import net.minecraft.block.material.Material;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
@@ -33,7 +32,7 @@ public class VerticalSlabBlock extends Block implements IWaterLoggable {
     private static final VoxelShape BASE_EAST = Block.box(0.0D,0.0D,0.0D,8.0D,16.0D,16.0D);
     private static final VoxelShape FULL = Block.box(0.0D,0.0D,0.0D,16.0D,16.0D,16.0D);
     public VerticalSlabBlock(Properties properties){
-         super(properties);
+        super(properties);
         this.registerDefaultState(this.stateDefinition.any()
                 .setValue(TYPE, SlabDirectionType.NORTH)
                 .setValue(WATERLOGGED,false));
@@ -43,9 +42,8 @@ public class VerticalSlabBlock extends Block implements IWaterLoggable {
         BlockPos blockpos = PlacingDirection.getClickedPos();
         SlabDirectionType direction;
         FluidState fluidstate = PlacingDirection.getLevel().getFluidState(blockpos);
-        boolean flagLocationZ = PlacingDirection.getClickLocation().z <= 0.5;
-        boolean flagEast = PlacingDirection.getClickLocation().x >= 0.5;
-        boolean flagWest = PlacingDirection.getClickLocation().x >= 0.5;
+        boolean flagLocationZ = PlacingDirection.getClickLocation().z >= 0.5;
+        boolean flagLocationX = PlacingDirection.getClickLocation().x >= 0.5;
         if (state.is(this)){
             direction = state.getValue(TYPE);
             if(direction == SlabDirectionType.NORTH && (flagLocationZ)){
@@ -54,10 +52,10 @@ public class VerticalSlabBlock extends Block implements IWaterLoggable {
             }else if(direction == SlabDirectionType.SOUTH && (flagLocationZ)){
                 return this.defaultBlockState()
                         .setValue(TYPE,SlabDirectionType.FULL).setValue(WATERLOGGED, false);
-            }else if(direction == SlabDirectionType.WEST && (flagWest)) {
+            }else if(direction == SlabDirectionType.WEST && (flagLocationX)) {
                 return this.defaultBlockState()
                         .setValue(TYPE,SlabDirectionType.FULL).setValue(WATERLOGGED, false);
-            }else if(direction == SlabDirectionType.EAST && (flagEast)) {
+            }else if(direction == SlabDirectionType.EAST && (flagLocationX)) {
                 return this.defaultBlockState()
                         .setValue(TYPE,SlabDirectionType.FULL).setValue(WATERLOGGED, false);
             }
